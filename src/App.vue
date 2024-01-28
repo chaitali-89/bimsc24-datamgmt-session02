@@ -16,13 +16,14 @@ doc.style.background = "grey"
 doc.style.fontFamily = "monospace"
 
 //access particular elemnts
-const nav = document.querySelector('#title')
-// console.log(nav)
+const nav = document.querySelector('title')
+console.log(nav)
 nav.innerHTML = "My first Webpageo"
 nav.style.fontSize = "12px"
 
 
-const sidebar = document.querySelector('#sidebar')
+const sidebar = document.getElementById('sidebar')
+console.log(sidebar)
 
 //create a form element in the sidebar
 let input = document.createElement("input")
@@ -46,7 +47,7 @@ resetButton.style.fontSize = "6px"
 submitButton.addEventListener('click', displaytext)
 resetButton.addEventListener('click', Refresh)
 
-const main = document.querySelector("#main")
+const main = document.querySelector("main")
 
 function displaytext() {
 
