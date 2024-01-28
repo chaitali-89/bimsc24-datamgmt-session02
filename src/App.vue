@@ -1,74 +1,76 @@
 <!-- the script is where the js code goes -->
 <script setup>
-import { ref } from "vue" // you need this to use ref()
+import { onMounted, ref } from "vue" // you need this to use ref()
 
 //this is my first line in javascript
 // console.log("Hello World")
 
 // let name = "Chaitali"
+
 console.log(name)
+onMounted(() => {
+    const doc = document.documentElement;
+    // console.log(doc)
 
-const doc = document.documentElement;
-// console.log(doc)
+    //change style of the doc from js
+    doc.style.background = "grey"
+    doc.style.fontFamily = "monospace"
 
-//change style of the doc from js
-doc.style.background = "grey"
-doc.style.fontFamily = "monospace"
-
-//access particular elemnts
-const nav = document.querySelector('title')
-console.log(nav)
-nav.innerHTML = "My first Webpageo"
-nav.style.fontSize = "12px"
-
-
-const sidebar = document.getElementById('sidebar')
-console.log(sidebar)
-
-//create a form element in the sidebar
-let input = document.createElement("input")
-input.style.width = "90%"
-input.style.fontSize = "20px"
-sidebar.appendChild(input)
-
-let submitButton = document.createElement("button")
-sidebar.appendChild(submitButton)
-submitButton.innerHTML = "Submit"
-submitButton.style.fontSize = "6px"
+    //access particular elemnts
+    const nav = document.querySelector('title')
+    console.log(nav)
+    nav.innerHTML = "My first Webpageo"
+    nav.style.fontSize = "12px"
 
 
-//add elemnts from js
-let resetButton = document.createElement("button")
-sidebar.appendChild(resetButton)
-resetButton.innerHTML = "Reset Button"
-resetButton.style.fontSize = "6px"
+    const sidebar = document.getElementById('sidebar')
+    console.log(sidebar)
 
-//create an event when you click the button
-submitButton.addEventListener('click', displaytext)
-resetButton.addEventListener('click', Refresh)
+    //create a form element in the sidebar
+    let input = document.createElement("input")
+    input.style.width = "90%"
+    input.style.fontSize = "20px"
+    sidebar.appendChild(input)
 
-const main = document.querySelector("main")
-
-function displaytext() {
-
-    let inputText = input.createElement(p)
-
-    main.innerHTML += inputText
+    let submitButton = document.createElement("button")
+    sidebar.appendChild(submitButton)
+    submitButton.innerHTML = "Submit"
+    submitButton.style.fontSize = "6px"
 
 
+    //add elemnts from js
+    let resetButton = document.createElement("button")
+    sidebar.appendChild(resetButton)
+    resetButton.innerHTML = "Reset Button"
+    resetButton.style.fontSize = "6px"
 
-}
+    //create an event when you click the button
+    submitButton.addEventListener('click', displaytext)
+    resetButton.addEventListener('click', Refresh)
+
+    const main = document.querySelector("main")
+
+    function displaytext() {
+
+        let inputText = input.createElement(p)
+
+        main.innerHTML += inputText
 
 
-function Refresh() {
-    let inputText = input.value
-    main.innerHTML = ""
 
-    // get rid of all the pagragraphs
+    }
 
-}
 
-m
+    function Refresh() {
+        let inputText = input.value
+        main.innerHTML = ""
+
+        // get rid of all the pagragraphs
+
+    }
+})
+
+
 </script>
 
 
