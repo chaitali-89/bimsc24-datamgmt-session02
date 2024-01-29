@@ -1,107 +1,100 @@
 <!-- the script is where the js code goes -->
 <script setup>
-import { onMounted, ref } from "vue" // you need this to use ref()
+import { onMounted, ref } from "vue";
 
-//this is my first line in javascript
-// console.log("Hello World")
+const myText = ref("WRITE YOUR HEART OUT");
 
-// let name = "Chaitali"
+// coloring 
+const colorMain = ref("")
+const colorInput = ref("");
+const divNameInput = ref("")
+var changecolor = null
 
-console.log(name)
+
 onMounted(() => {
-    const doc = document.documentElement;
-    // console.log(doc)
-
-    //change style of the doc from js
-    doc.style.background = "grey"
-    doc.style.fontFamily = "monospace"
-
-    //access particular elemnts
-    const nav = document.querySelector('title')
-    console.log(nav)
-    nav.innerHTML = "My first Webpageo"
-    nav.style.fontSize = "12px"
-
-
-    const sidebar = document.getElementById('sidebar')
-    console.log(sidebar)
-
-    //create a form element in the sidebar
-    let input = document.createElement("input")
-    input.style.width = "90%"
-    input.style.fontSize = "20px"
-    sidebar.appendChild(input)
-
-    let submitButton = document.createElement("button")
-    sidebar.appendChild(submitButton)
-    submitButton.innerHTML = "Submit"
-    submitButton.style.fontSize = "6px"
-
-
-    //add elemnts from js
-    let resetButton = document.createElement("button")
-    sidebar.appendChild(resetButton)
-    resetButton.innerHTML = "Reset Button"
-    resetButton.style.fontSize = "6px"
-
-    //create an event when you click the button
-    submitButton.addEventListener('click', displaytext)
-    resetButton.addEventListener('click', Refresh)
-
-    const main = document.querySelector("main")
-
-    function displaytext() {
-
-        let inputText = input.createElement(p)
-
-        main.innerHTML += inputText
-
-
-
-    }
-
-
-    function Refresh() {
-        let inputText = input.value
-        main.innerHTML = ""
-
-        // get rid of all the pagragraphs
-
-    }
+    changecolor = () => {
+        let mySelectedDiv = document.getElementById(divNameInput.value)
+        mySelectedDiv.style.background = colorInput.value
+        console.log(mySelectedDiv);
+        mySelectedDiv.style.width = "90%"
+    };
 })
 
+onMounted(() => {
+    const inputbar = document.querySelector('#textbar');
 
+    // create a form element in the sidebar
+    let input = document.createElement("input");
+    input.style.width = "90%";
+    input.style.fontSize = "12px";
+    inputbar.appendChild(input);
+
+    let submitButton = document.createElement("button");
+    inputbar.appendChild(submitButton);
+    submitButton.innerHTML = "Submit";
+    submitButton.style.fontSize = "16px"; // Increased font size for better visibility
+
+    submitButton.addEventListener('click', doSomething);
+
+    const main = document.querySelector("#main");
+
+    function doSomething() {
+        let inputText = input.value.trim(); // Trim to remove leading and trailing spaces
+        if (inputText) {
+            main.innerHTML += `<p>${inputText}</p>`;
+            input.value = ""; // Clear the input field after submission
+        }
+    }
+
+
+
+
+
+
+
+});
 </script>
-
-
 
 <!-- the template is where the html code goes -->
 <template>
-    <div id="navbar" class="container">
-        <div id="title">David's bootcamp website website</div>
-        <div id="logo">
-
-
-
-        </div>
-
-
+    <div id="navbar">
+        <p id="title">
+            {{ myText }}
+        </p>
     </div>
 
     <div id="flex">
+        <div id="sidebar" class="container">
+            <div id="textbar">
+                <h3>INPUT TEXT</h3>
+            </div>
 
-        <div id="sidebar" class="container"> Sidebar </div>
+            <div id="colorbar">
+                <br />
+                <h3>COLOUR </h3>
+
+
+
+
+                <input class="inputbox" v-model="divNameInput" type="text" placeholder="Division: navbar/main/sidebar">
+                <br />
+                <input class="inputbox" v-model="colorInput" type="text" placeholder="Color">
+                <br />
+                <button @click="changecolor">
+                    Change Color
+                </button>
+
+            </div>
+        </div>
 
         <div id="main" class="container">
-            <p> input </p>
-            <p> </p>
-
-
+            <!-- Displaying input text as paragraphs -->
+            <p>
+            <h3>OUTPUT TEXT </h3>
+            </p>
         </div>
     </div>
 </template>
-
-
 
 <!-- style is where the css code goes -->
 <style scoped>
@@ -134,6 +127,16 @@ img {
     height: 50px;
     border-color: red;
     text-decoration-color: aqua;
+    background-color: rgb(203, 240, 239);
+    text-align: center;
+    text-transform: capitalize;
+    box-sizing: border-box;
+    border-radius: 20px;
+    margin: 1%;
+    box-shadow: inset;
+    text-size-adjust: 80%;
+
+
 }
 
 #flex {
@@ -146,18 +149,23 @@ img {
 #sidebar {
 
     width: 30%;
-    border-color: blue;
+    border-color: rgb(95, 95, 95);
+    border-radius: 20px;
+    text-align: center;
+    margin: 0.25%;
 
 }
 
 #main {
     width: 70%;
-    border-color: green;
-
+    border-color: rgb(136, 137, 137);
+    border-radius: 20px;
+    text-align: center;
+    margin: 0.25%;
 }
 
 #title {
-    width: 70%;
+    width: 100%;
     float: left;
 }
 
@@ -174,5 +182,12 @@ img {
     border-style: dotted;
     border-width: 1px;
 
+}
+
+.inputbox {
+    width: 90%;
+    text-align: left;
+    margin: auto;
+    align-items: center;
 }
 </style>
